@@ -859,7 +859,7 @@ impl Process {
         let mut s = String::new();
         let mut f = FileWrapper::open_at(&self.root, &self.fd, "ipaddr")?;
         f.read_to_string(&mut s)?;
-        Ok(s)
+        Ok(s.trim_end().to_string())
     }
 
 
