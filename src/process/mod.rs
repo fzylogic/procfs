@@ -855,6 +855,9 @@ impl Process {
             .collect())
     }
 
+    /// When running on kernels with the grsecurity patch applied and PROC_IPADDR option
+    /// enabled, this returns the ipaddress value for a process. Note that unlike most other
+    /// files, this one is newline-terminated so we strip that off.
     pub fn ipaddr(&self) -> ProcResult<String> {
         let mut s = String::new();
         let mut f = FileWrapper::open_at(&self.root, &self.fd, "ipaddr")?;
